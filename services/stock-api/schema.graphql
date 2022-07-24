@@ -1,0 +1,33 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type TwitterPost {
+    id: ID!
+    msg: String!
+    created_at: String!
+}
+
+type PostResult {
+    success: Boolean!
+    errors: [String]
+    post: TwitterPost
+}
+
+type PostsResult {
+    success: Boolean!
+    errors: [String]
+    posts: [TwitterPost]
+}
+
+type Query {
+    listPosts: PostsResult!
+    getPost(id: ID!): PostResult!
+}
+
+type Mutation {
+    createPost(msg: String!, created_at: String): PostResult!
+    updatePost(id: ID!, msg: String): PostResult!
+    deletePost(id: ID): PostResult!
+}
